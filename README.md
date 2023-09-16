@@ -15,6 +15,7 @@ Turma On25 - Imersão JavaScript | Projeto Final | 2023 | Aluna: [Ciane Pereira]
 
 ## Objetivo
 
+### Cidades e comunidades sustentáveis 
 A proposta do projeto é conectar famílias que tem brinquedos em casa, que as crianças cresceram, então não brincam mais, com instituições carentes que cuidam de crianças.
 
 
@@ -33,8 +34,13 @@ O projeto foi desenvolvido aplicando os conteúdos ministrados durante as aulas:
 - Test Driven Development 
 - Orientação a Objetos 
 - Clean Code
-- Refatoração
 - SOLID
+
+Fucionalidades:
+ `Cadastro ponto de coleta`
+ `Cadastro instituição`
+ `coleta de brinquedos, avaliação e encaminhamento para instituição `
+ `Informações da pessoa doadora do brinquedo`
 
 Tecnologias utilizadas:
 
