@@ -22,7 +22,7 @@ describe('verifica class Doador', () => {
         }).toThrow('Dados inválidos.');
     });
 
-    test('Deve agradecer ao doador', () => {
+    test('Deve agradecer a doação', () => {
         const nome = 'Ana';
         const telefone = '11987654321';
         const email = 'ana@example.com';

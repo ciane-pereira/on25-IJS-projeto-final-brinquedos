@@ -42,6 +42,32 @@ JavaScript
 Jest
 Node.js
 
+```javascript
+class Doador {
+    nome;
+    telefone;
+    email;
+  
+    constructor(nome, telefone, email) {
+        if(this.validarEmail(email) && this.validarCelular(telefone)) {            
+        this.nome = nome;    
+        this.telefone = telefone; 
+        this.email = email;
+        
+        } else {
+            const errorMessage = 'Dados inválidos.';            
+            throw new Error(errorMessage);
+        }       
+    }
+
+    validarEmail(email) {
+        const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+      return regex.test(email);     
+      }      
+
+<h2 align="center">
+  <img src="./assets/codigo teste.png" width="500">
+</h2>
 
 
 ### Contatos

@@ -1,26 +1,20 @@
 class Brinquedo {
-    constructor(estabelecimento) {
-        this.brinquedoEstabelecimento = estabelecimento.brinquedo;
-        this.instituicoesRecebimento = estabelecimento.instituicoesRecebimento;
-        this.brinquedosNovos = [];
+    brinquedos = [];
+
+    constructor() {
+        this.brinquedos = [];
     }
 
     selecionarBrinquedos() {
-        this.brinquedosNovos = this.brinquedoEstabelecimento
-            .filter(brinquedo => brinquedo.condicao === 'novo')
-            .slice(0, 20);
-    }
-
-    criarListaInstituicoesSemBrinquedos() {
-        const instituicoesSemBrinquedos = this.instituicoesRecebimento.filter((instituicao) => {
-            return !this.brinquedosNovos.some((brinquedo) => brinquedo.instituicao === instituicao);
-        });
-
-        return instituicoesSemBrinquedos;
+        if(this.brinquedos === 'novo') {
+            return 'Boa! Vai para as crianças!'
+        } else {
+            return 'Brinquedo será descartado'
+        }
     }
 
     encaminharBrinquedos() {
-        const instituicoesSemBrinquedos = this.criarListaInstituicoesSemBrinquedos();
+        const instituicoesSemBrinquedos = this.selecionarBrinquedos();
 
         instituicoesSemBrinquedos.sort((a, b) => {
             if (a.brinquedosRecebidos.length === 0 && b.brinquedosRecebidos.length > 0) {
@@ -31,7 +25,7 @@ class Brinquedo {
                 return 0;
             }
         });
-    }
+}
 }
 
 module.exports = { Brinquedo };

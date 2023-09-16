@@ -1,35 +1,48 @@
+const { default: test } = require('node:test');
 const { Brinquedo } = require('../class/brinquedo');
 
 describe('Brinquedo', () => {
-    
-  
-    beforeEach(() => {
-        let brinquedo;
-      const estabelecimento = {
-        brinquedo: [
-          { condicao: 'novo', instituicao: 'Instituicao1' },
-          { condicao: 'novo', instituicao: 'Instituicao2' },
-        ],
-        instituicoesRecebimento: ['Instituicao1', 'Instituicao2', 'Instituicao3'],
-      };
-      brinquedo = new Brinquedo(estabelecimento);
+  let brinquedo;
+
+  beforeEach(() => {
+    brinquedo = new Brinquedo();
+  });
+
+  describe('selecionarBrinquedos', () => {
+    test('deve retornar "Boa! Vai para as crianças!" quando brinquedos for "novo"', () => {
+      brinquedo.brinquedos = 'novo';
+      expect(brinquedo.selecionarBrinquedos()).toBe('Boa! Vai para as crianças!');
     });
-  
-    test('deve selecionar brinquedos novos', () => {
-      brinquedo.selecionarBrinquedos();
-      expect(brinquedo.brinquedosNovos).toHaveLength(20);
-    });
-  
-   test('deve criar lista de instituições sem brinquedos', () => {
-      const instituicoesSemBrinquedos = brinquedo.criarListaInstituicoesSemBrinquedos();
-      expect(instituicoesSemBrinquedos).toContain('Instituicao3');
-      expect(instituicoesSemBrinquedos).not.toContain('Instituicao1');
-      expect(instituicoesSemBrinquedos).not.toContain('Instituicao2');
-    });
-  
-    test('deve encaminhar brinquedos corretamente', () => {
-      brinquedo.encaminharBrinquedos();
-    
+
+    test('deve retornar "Brinquedo será descartado" quando brinquedos não for "novo"', () => {
+      brinquedo.brinquedos = 'usado';
+      expect(brinquedo.selecionarBrinquedos()).toBe('Brinquedo será descartado');
     });
   });
-  
+
+  describe('encaminharBrinquedos', () => {
+    test('deve classificar instituições com brinquedos recebidos antes das que não receberam', () => {
+      const instituicao1 = { brinquedosRecebidos: [] };
+      const instituicao2 = { brinquedosRecebidos: ['brinquedo1'] };
+      const instituicao3 = { brinquedosRecebidos: ['brinquedo2'] };
+
+      brinquedo.brinquedos = 'novo';
+      const instituicoes = [instituicao1, instituicao2, instituicao3];
+      brinquedo.encaminharBrinquedos(instituicoes);
+
+      expect(instituicoes).toEqual([instituicao2, instituicao3, instituicao1]);
+    });
+
+    test('deve manter a ordem das instituições se nenhuma tiver recebido brinquedos', () => {
+      const instituicao1 = { brinquedosRecebidos: [] };
+      const instituicao2 = { brinquedosRecebidos: [] };
+      const instituicao3 = { brinquedosRecebidos: [] };
+
+      brinquedo.brinquedos = 'novo';
+      const instituicoes = [instituicao1, instituicao2, instituicao3];
+      brinquedo.encaminharBrinquedos(instituicoes);
+
+      expect(instituicoes).toEqual([instituicao1, instituicao2, instituicao3]);
+    });
+  });
+});
