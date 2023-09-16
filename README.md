@@ -63,7 +63,8 @@ class Doador {
     validarEmail(email) {
         const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
       return regex.test(email);     
-      }      
+      }
+```            
 
 <h2 align="center">
   <img src="./assets/codigo teste.png" width="500">
