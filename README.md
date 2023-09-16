@@ -64,6 +64,10 @@ class Doador {
         const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
       return regex.test(email);     
       }
+
+      getAgradecer() {
+        return `${this.nome} muito obrigado por sua doação!`;
+      }
 ```            
 
 <h2 align="center">
